@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<thing:thing-descriptions bindingId="minecraftvanilla"
+						  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+						  xmlns:thing="http://eclipse.org/smarthome/schemas/thing-description/v1.0.0"
+						  xsi:schemaLocation="http://eclipse.org/smarthome/schemas/thing-description/v1.0.0 http://eclipse.org/smarthome/schemas/thing-description-1.0.0.xsd">
+
+	
+    <bridge-type id="server">
+        <label>Vanilla Minecraft Server</label>
+        <description>Vanilla Minecraft Server control</description>
+        <properties>
+            <property name="name"></property>
+        </properties>
+        <config-description>
+            <parameter name="address" type="text" required="true">
+                    <label>address</label>
+                    <description>Address of Minecraft Server</description>
+                    <context>address</context>
+            </parameter>
+             <parameter name="port" type="text" required="true">
+                    <label>port</label>
+                     <default>25565</default>
+                    <description>Port of Minecraft Server</description>
+                    <context>port</context>
+            </parameter>
+      
+        
+            <parameter name="RefreshInterval" type="integer" required="false">
+                <label>Refresh Interval</label>
+                <default>60</default>
+                <description>How often to refresh information.
+                </description>
+            </parameter>
+        </config-description>
+    </bridge-type>
+    
+    
+    <thing-type id="player"> 
+        <supported-bridge-type-refs>
+            <bridge-type-ref id="server" />
+        </supported-bridge-type-refs>
+        <label>Minecraft Player</label>
+        <description>Minecraft Player </description>
+        <channels>
+            <channel id="online" typeId="online"/>
+        </channels>     
+        
+        <config-description>
+            <parameter name="id" type="text" required="false">
+                <label>id</label>
+                <description></description>
+            </parameter>
+            <parameter name="name" type="text" required="false">
+                <label>name</label>
+                <description></description>
+            </parameter>
+        </config-description>
+    </thing-type>
+
+    <channel-type id="online">
+        <item-type>Switch</item-type>
+        <label>Online</label>
+        <description>Players online status</description>
+    </channel-type>
+</thing:thing-descriptions>
